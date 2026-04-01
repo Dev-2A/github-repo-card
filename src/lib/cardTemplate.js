@@ -6,8 +6,8 @@ import { THEMES } from "./themes";
  * Satori는 React.createElement 형태 또는 JSX → React element를 받으므로,
  * 여기서는 React.createElement 호환 구조로 반환한다.
  */
-export function buildCardMarkup(data, theme = "dark") {
-  const t = THEMES[theme] || THEMES.dark;
+export function buildCardMarkup(data, theme = "dark", colorOverrides = {}) {
+  const t = { ...(THEMES[theme] || THEMES.dark), ...colorOverrides };
 
   const langBar =
     data.languages.length > 0

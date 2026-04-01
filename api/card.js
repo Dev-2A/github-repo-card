@@ -55,7 +55,15 @@ async function initResvg() {
 
 export default async function handler(req, res) {
   try {
-    const { repo, theme = "dark", format = "png" } = req.query;
+    const {
+      repo,
+      theme = "dark",
+      format = "png",
+      bg,
+      border,
+      text,
+      accent,
+    } = req.query;
 
     if (!repo) {
       return res
@@ -72,7 +80,16 @@ export default async function handler(req, res) {
 
     const [owner, repoName] = parts;
     const data = await fetchRepoData(owner, repoName);
-    const markup = buildCardMarkup(data, theme);
+
+    // 커스텀 색상 오버라이드
+    const colorOverrides = {};
+    if (bg) colorOverrides.cardBg = `#${bg}`;
+    if (border) colorOverrides.border = `#${border}`;
+    if (text) colorOverrides.text = `#${text}`;
+    if (accent) colorOverrides.accent = `#${accent}`;
+
+    const markup = buildCardMarkup(data, theme, colorOverrides);
+
     const fonts = await loadFonts();
 
     const svg = await satori(markup, {
