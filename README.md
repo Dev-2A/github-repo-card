@@ -12,7 +12,7 @@ README에 아래 마크다운을 추가하면 카드가 자동으로 표시됩�
 ### Markdown
 
 ```markdown
-![repo card](https://github-repo-card.vercel.app/api/card?repo=Dev-2A/bookshelf-log)
+![repo card](https://github-repo-card-mu.vercel.app/api/card?repo=Dev-2A/bookshelf-log)
 ```
 
 ## Parameters
