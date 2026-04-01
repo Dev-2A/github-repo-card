@@ -18,7 +18,7 @@ export default function MarkdownCopy({ data, theme }) {
   const htmlSnippet = `<img src="${apiUrl}" alt="${data.fullName} card" width="600" />`;
 
   return (
-    <div className="w-full max-w-xl flex flex-col gap-3">
+    <div className="w-full max-w-xl flex flex-col gap-3 px-4 sm:px-0">
       <label className="text-text-secondary text-sm">README에 삽입</label>
 
       {/* Markdown */}

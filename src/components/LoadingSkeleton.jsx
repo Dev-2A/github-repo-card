@@ -1,6 +1,6 @@
 export default function LoadingSkeleton() {
   return (
-    <div className="w-[600px] h-[340px] rounded-xl border border-border bg-bg-card p-8 flex flex-col justify-between animate-pulse">
+    <div className="w-[320px] sm:w-[450px] md:w-[600px] h-[200px] sm:h-[270px] md:h-[340px] rounded-xl border border-border bg-bg-card p-4 sm:p-6 md:p-8 flex flex-col justify-between animate-pulse">
       {/* 상단 */}
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-border" />

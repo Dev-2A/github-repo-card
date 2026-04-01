@@ -20,3 +20,35 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
 }
+
+/* 커스텀 스크롤바 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* 코드 블록 가로 스크롤 */
+code {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+/* 포커스 링 */
+*:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

@@ -11,9 +11,9 @@ const THEME_PREVIEWS = {
 
 export default function ThemeSelector({ current, onChange }) {
   return (
-    <div className="w-full max-w-xl">
+    <div className="w-full max-w-xl px-4 sm:px-0">
       <label className="block text-text-secondary text-sm mb-2">테마</label>
-      <div className="flex flex-wrap gap-2">
+      <div className="grid grid-cols-3 sm:flex sm:flex-wrap gap-2">
         {Object.entries(THEMES).map(([key, value]) => {
           const colors = THEME_PREVIEWS[key] || ["#000", "#111", "#fff"];
           const isActive = current === key;
@@ -22,23 +22,23 @@ export default function ThemeSelector({ current, onChange }) {
             <button
               key={key}
               onClick={() => onChange(key)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm cursor-pointer border transition-all ${
+              className={`flex items-center justify-center sm:justify-start gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm cursor-pointer border transition-all ${
                 isActive
                   ? "border-accent-blue bg-accent-blue/10 text-accent-blue"
                   : "border-border bg-bg-card text-text-secondary hover:border-accent-blue/50"
               }`}
             >
-              {/* 테마 미니 프리뷰 */}
               <div className="flex gap-0.5">
                 {colors.map((c, i) => (
                   <div
                     key={i}
                     style={{ backgroundColor: c }}
-                    className="w-3 h-3 rounded-sm first:rounded-l last:rounded-r"
+                    className="w-3 h-3 rounded-sm"
                   />
                 ))}
               </div>
-              {value.name}
+              <span className="hidden sm:inline">{value.name}</span>
+              <span className="sm:hidden text-xs">{value.name}</span>
             </button>
           );
         })}

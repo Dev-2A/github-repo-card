@@ -31,18 +31,20 @@ export default function CardPreview({ data, theme }) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6">
-      {/* 카드 미리보기 */}
-      <div className="rounded-xl overflow-hidden shadow-2xl">
-        <RepoCard data={data} theme={theme} />
+    <div className="flex flex-col items-center gap-6 w-full">
+      {/* 카드 — 모바일에서 축소 */}
+      <div className="w-full overflow-x-auto flex justify-center px-4">
+        <div className="origin-top-left scale-[0.55] sm:scale-75 md:scale-100 transition-transform">
+          <RepoCard data={data} theme={theme} />
+        </div>
       </div>
 
       {/* 다운로드 버튼 */}
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3 px-4">
         <button
           onClick={handleDownloadPNG}
           disabled={rendering}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent-green text-bg font-semibold text-sm hover:opacity-90 disabled:opacity-50 cursor-pointer transition-opacity"
+          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-accent-green text-bg font-semibold text-sm hover:opacity-90 disabled:opacity-50 cursor-pointer transition-opacity"
         >
           {rendering ? (
             <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
@@ -78,7 +80,7 @@ export default function CardPreview({ data, theme }) {
         <button
           onClick={handleDownloadSVG}
           disabled={rendering}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-bg-card border border-border text-text-secondary text-sm hover:border-accent-blue cursor-pointer transition-colors"
+          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-bg-card border border-border text-text-secondary text-sm hover:border-accent-blue cursor-pointer transition-colors"
         >
           <svg
             width="16"

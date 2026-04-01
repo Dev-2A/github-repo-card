@@ -10,17 +10,17 @@ export default function RepoInput({ onSubmit, loading }) {
   };
 
   return (
-    <div className="w-full max-w-xl">
+    <div className="w-full max-w-xl px-4 sm:px-0">
       <label className="block text-text-secondary text-sm mb-2">
-        GitHub 레포지토리 (owner/repo 또는 URL)
+        GitHub 레포지토리
       </label>
-      <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row gap-2">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-          placeholder="Dev-2A/bookshelf-log"
+          placeholder="owner/repo 또는 GitHub URL"
           className="flex-1 px-4 py-3 rounded-lg bg-bg-input border border-border text-text placeholder:text-text-secondary/50 focus:outline-none focus:border-accent-blue transition-colors"
         />
         <button
@@ -29,7 +29,7 @@ export default function RepoInput({ onSubmit, loading }) {
           className="px-8 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-light disabled:opacity-50 cursor-pointer transition-colors"
         >
           {loading ? (
-            <span className="flex items-center gap-2">
+            <span className="flex items-center justify-center gap-2">
               <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
                 <circle
                   className="opacity-25"
