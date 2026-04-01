@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import useCopyToClipboard from "../hooks/useCopyToClipboard";
 
-const BASE_URL = "https://github-repo-card.vercel.app";
+const BASE_URL = "https://github-repo-card-mu.vercel.app";
 
 export default function MarkdownCopy({ data, theme }) {
   const { copied: copiedMd, copy: copyMd } = useCopyToClipboard();
