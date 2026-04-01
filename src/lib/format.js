@@ -42,19 +42,10 @@ export function timeAgo(dateString) {
  */
 export function stripEmoji(str) {
   return str
-    .replace(/[\u{1F600}-\u{1F64F}]/gu, "")
-    .replace(/[\u{1F300}-\u{1F5FF}]/gu, "")
-    .replace(/[\u{1F680}-\u{1F6FF}]/gu, "")
-    .replace(/[\u{1F1E0}-\u{1F1FF}]/gu, "")
-    .replace(/[\u{2600}-\u{26FF}]/gu, "")
-    .replace(/[\u{2700}-\u{27BF}]/gu, "")
-    .replace(/[\u{FE00}-\u{FE0F}]/gu, "")
-    .replace(/[\u{1F900}-\u{1F9FF}]/gu, "")
-    .replace(/[\u{1FA00}-\u{1FA6F}]/gu, "")
-    .replace(/[\u{1FA70}-\u{1FAFF}]/gu, "")
-    .replace(/[\u{200D}]/gu, "")
-    .replace(/[\u{20E3}]/gu, "")
-    .replace(/[\u{E0020}-\u{E007F}]/gu, "")
+    .replace(/\p{Emoji_Presentation}/gu, "")
+    .replace(/\p{Extended_Pictographic}/gu, "")
+    .replace(/\p{Emoji}\uFE0F/gu, "")
+    .replace(/\uFE0F/gu, "")
     .replace(/\s{2,}/g, " ")
     .trim();
 }
