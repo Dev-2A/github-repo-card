@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import RepoInput from "./components/RepoInput";
 import ThemeSelector from "./components/ThemeSelector";
 import CardPreview from "./components/CardPreview";
+import MarkdownCopy from "./components/MarkdownCopy";
 
 function App() {
   const [data, setData] = useState(null);
@@ -59,7 +60,12 @@ function App() {
         </div>
       )}
 
-      {data && <CardPreview data={data} theme={theme} />}
+      {data && (
+        <div className="flex flex-col items-center gap-8">
+          <CardPreview data={data} theme={theme} />
+          <MarkdownCopy data={data} theme={theme} />
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="mt-auto pt-8 text-center text-text-secondary text-sm">
