@@ -1,3 +1,5 @@
+import { getCache, setCache } from "./cache";
+
 const GITHUB_API = "https://api.github.com";
 
 /**
@@ -99,12 +101,16 @@ export function parseRepoInput(input) {
  * @returns {Promise<object>}
  */
 export async function fetchRepoData(owner, repo) {
+  const cacheKey = `${owner}/${repo}`;
+  const cached = getCache(cacheKey);
+  if (cached) return cached;
+
   const [info, languages] = await Promise.all([
     fetchRepoInfo(owner, repo),
     fetchRepoLanguages(owner, repo),
   ]);
 
-  return {
+  const data = {
     name: info.name,
     fullName: info.full_name,
     description: info.description || "설명이 없습니다.",
@@ -123,6 +129,9 @@ export async function fetchRepoData(owner, repo) {
     updatedAt: info.updated_at,
     createdAt: info.created_at,
   };
+
+  setCache(cacheKey, data);
+  return data;
 }
 
 /**

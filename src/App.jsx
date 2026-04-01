@@ -5,6 +5,8 @@ import RepoInput from "./components/RepoInput";
 import ThemeSelector from "./components/ThemeSelector";
 import CardPreview from "./components/CardPreview";
 import MarkdownCopy from "./components/MarkdownCopy";
+import ErrorMessage from "./components/ErrorMessage";
+import LoadingSkeleton from "./components/LoadingSkeleton";
 
 function App() {
   const [data, setData] = useState(null);
@@ -15,19 +17,21 @@ function App() {
   const handleSubmit = async (input) => {
     const parsed = parseRepoInput(input);
     if (!parsed) {
-      setError("올바른 형식이 아닙니다. owner/repo 형태로 입력해주세요.");
+      setError(
+        "올바른 형식이 아닙니다. owner/repo 또는 GitHub URL을 입력해주세요.",
+      );
       return;
     }
 
     setLoading(true);
     setError(null);
-    setData(null);
 
     try {
       const repoData = await fetchRepoData(parsed.owner, parsed.repo);
       setData(repoData);
     } catch (err) {
       setError(err.message);
+      setData(null);
     } finally {
       setLoading(false);
     }
@@ -43,24 +47,12 @@ function App() {
       </div>
 
       {error && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm max-w-xl">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <line x1="15" y1="9" x2="9" y2="15" />
-            <line x1="9" y1="9" x2="15" y2="15" />
-          </svg>
-          {error}
-        </div>
+        <ErrorMessage message={error} onDismiss={() => setError(null)} />
       )}
 
-      {data && (
+      {loading && <LoadingSkeleton />}
+
+      {data && !loading && (
         <div className="flex flex-col items-center gap-8">
           <CardPreview data={data} theme={theme} />
           <MarkdownCopy data={data} theme={theme} />
